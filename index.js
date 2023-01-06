@@ -48,8 +48,6 @@ async function clickAndSubmit(page) {
   await page.waitForSelector("span[class='NPEfkd RveJvd snByac']");
 
   await page.evaluate(() => {
-    debugger
-
     // setup
     const targetName = '058 HACHI 89-ハチキュウ-';
     const listElements = [...document.querySelectorAll("div[role='list'] span[dir='auto']")]
