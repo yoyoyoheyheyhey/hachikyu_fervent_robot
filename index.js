@@ -22,6 +22,8 @@ puppeteer.use(StealthPlugin());
    const page = await browser.newPage();
 
   await gotoForm(page);
+  console.log('投票します...')
+
   let i = 0
   while (true) {
     const html = await page.content();
@@ -35,7 +37,7 @@ puppeteer.use(StealthPlugin());
     await page.waitForSelector("span[class='NPEfkd RveJvd snByac']");
 
     i += 1
-    console.log(`Submitted: ${i}`)
+    console.log(`投票しました: ${i}回目`)
   }
 })();
 
