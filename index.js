@@ -8,7 +8,8 @@ puppeteer.use(StealthPlugin());
 
 (async () => {
    const browser = await puppeteer.launch({
-      headless: true,
+      headless: false,
+      // headless: true,
       args:[
          '--no-sandbox',
          '--disable-gpu',
@@ -30,7 +31,8 @@ puppeteer.use(StealthPlugin());
     const $ = cheerio.load(html);
 
     await clickAndSubmit(page);
-    const linkToReturnPath = "a[href='https://docs.google.com/forms/d/e/1FAIpQLSczBmZtKOyWQkWdEAyF9yxB5vn4MmSVrcGpi5den2w43dGOXw/viewform?usp=form_confirm']"
+
+    const linkToReturnPath = "a[href='https://docs.google.com/forms/d/e/1FAIpQLSdI7XHWobY9F7F4Yu36XOYHevzA7vJeDZCLdF70woXT0qDIuw/viewform?usp=form_confirm']"
     await page.waitForSelector(linkToReturnPath)
     await page.click(linkToReturnPath)
 
@@ -42,16 +44,16 @@ puppeteer.use(StealthPlugin());
 })();
 
 async function gotoForm(page) {
-  const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSczBmZtKOyWQkWdEAyF9yxB5vn4MmSVrcGpi5den2w43dGOXw/viewform"
+  const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdI7XHWobY9F7F4Yu36XOYHevzA7vJeDZCLdF70woXT0qDIuw/viewform"
   await page.goto(formUrl);
 }
 
 async function clickAndSubmit(page) {
-  await page.waitForSelector("span[class='NPEfkd RveJvd snByac']");
+  await page.waitForSelector("span[class='l4V7wb Fxmcue']");
 
   await page.evaluate(() => {
     // setup
-    const targetName = '058 HACHI 89-ハチキュウ-';
+    const targetName = '038 HACHI ハチキュウ';
     const listElements = [...document.querySelectorAll("div[role='list'] span[dir='auto']")]
     const targetIndex = listElements.findIndex(el => el.textContent === targetName)
     const targetEl = listElements[targetIndex]
@@ -66,5 +68,5 @@ async function clickAndSubmit(page) {
     document.querySelector("div[role='button']").click()
   })
 
-  await page.waitForTimeout(10000)
+  //await page.waitForTimeout(10000)
 }
